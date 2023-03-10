@@ -1,32 +1,84 @@
-# Prerequisites
-*.d
+#include<iostream>
+#include<cmath>
+#include<math.h>
+constexpr auto M_PI = 3.14159265358979323846;
+using namespace std;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+class Circle
+{
+private:
+	double x, y, r;
 
-# Precompiled Headers
-*.gch
-*.pch
+public:
+	Circle(double x, double y, double r)
+	{
+		if (r <= 0)
+		{
+			cout << "Ошибка: радиус должен быть иметь положительное значение" << endl;
+			exit(1);
+		}
+		this->x = x;
+		this->y = y;
+		this->r = r;
+	}
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+	double getArea() const
+	{
+		return M_PI * r * r;
+	}
 
-# Fortran module files
-*.mod
-*.smod
+	double getLenght() const
+	{
+		return 2 * M_PI * r;
+	}
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+	void setCenter(double x, double y)
+	{
+		this->x = x;
+		this->y = y;
 
-# Executables
-*.exe
-*.out
-*.app
+	}
+
+	void setRadius(double r)
+	{
+		if (r <= 0)
+		{
+			cout << "Ошибка: радиус должен иметь положительное значение" << endl;
+			exit(1);
+		}
+		this->r = r;
+	}
+
+	double getX() const
+	{
+		return x;
+	}
+
+	double getY() const
+	{
+		return y;
+	}
+
+	double getRadius() const
+	{
+		return r;
+	}
+
+	void printinfo() const
+	{
+		cout << "Круг: центр = (" << x << "," << y << "), радиус =" << r << endl;
+		cout << "Площадь: " << getArea() << endl;
+		cout << "Длина: " << getLenght() << endl;
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	Circle c(0, 0, 5);
+	c.printinfo();
+	c.setCenter(1, 2);
+	c.setRadius(10);
+	c.printinfo();
+	return 0;
+}
